@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -11,71 +11,73 @@ const Index = () => {
   const homeRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+
+  const [currentSection, setCurrentSection] = useState(0);
+
+  const sections = [homeRef, servicesRef, contactRef, footerRef];
 
   const scrollToSection = (sectionRef: React.RefObject<HTMLDivElement>) => {
     if (sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+      sectionRef.current.scrollIntoView({ 
+        behavior: "smooth", 
+        block: "start" 
+      });
     }
   };
 
   // Auto-scrolling functionality
   useEffect(() => {
-    // Function to handle automatic scrolling
     const handleAutoScroll = () => {
-      const sections = [homeRef, servicesRef, contactRef];
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
-      const documentHeight = document.body.scrollHeight;
-      
-      // If user is near the bottom, don't interfere with their scrolling
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
-        return;
-      }
-      
-      // Determine which section to scroll to based on current position
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i].current;
-        if (!section) continue;
+
+      // Find the current section based on scroll position
+      const sectionIndex = sections.findIndex((section, index) => {
+        if (!section.current) return false;
+        const sectionTop = section.current.offsetTop;
+        const sectionHeight = section.current.offsetHeight;
         
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+        return (
+          scrollPosition >= sectionTop - windowHeight / 2 && 
+          scrollPosition < sectionTop + sectionHeight - windowHeight / 2
+        );
+      });
+
+      if (sectionIndex !== -1 && sectionIndex !== currentSection) {
+        setCurrentSection(sectionIndex);
         
-        // If we're in the current section but not at the next one yet
+        // Automatically scroll to next section if user is near bottom of current section
         if (
-          scrollPosition >= sectionTop - 100 && 
-          scrollPosition < sectionTop + sectionHeight - 100
+          sections[sectionIndex].current && 
+          sectionIndex < sections.length - 1
         ) {
-          // If we're near the bottom of this section, scroll to the next one
-          if (scrollPosition > sectionTop + sectionHeight / 2) {
-            if (i < sections.length - 1 && sections[i + 1].current) {
-              scrollToSection(sections[i + 1]);
-            }
-            break;
+          const currentSectionElement = sections[sectionIndex].current;
+          const scrollPercentage = 
+            (scrollPosition - currentSectionElement.offsetTop) / 
+            currentSectionElement.offsetHeight;
+
+          if (scrollPercentage > 0.7) {
+            scrollToSection(sections[sectionIndex + 1]);
           }
         }
       }
     };
 
-    // Detect scroll end for auto-scrolling to the next section
-    let scrollTimeout: number | null = null;
-    const handleScrollEnd = () => {
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      scrollTimeout = window.setTimeout(handleAutoScroll, 800); // Adjust timing as needed
+    // Debounce scroll event
+    let scrollTimeout: number;
+    const debouncedHandleScroll = () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(handleAutoScroll, 200);
     };
 
-    // Add event listener for scroll
-    window.addEventListener('scroll', handleScrollEnd);
+    window.addEventListener('scroll', debouncedHandleScroll);
 
-    // Clean up on component unmount
     return () => {
-      window.removeEventListener('scroll', handleScrollEnd);
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
+      window.removeEventListener('scroll', debouncedHandleScroll);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
     };
-  }, []);
+  }, [currentSection]);
 
   return (
     <div className="min-h-screen bg-white text-gym-dark">
@@ -97,9 +99,12 @@ const Index = () => {
         <Contact />
       </div>
       
-      <Footer />
+      <div ref={footerRef} className="scroll-section">
+        <Footer />
+      </div>
     </div>
   );
 };
 
 export default Index;
+
