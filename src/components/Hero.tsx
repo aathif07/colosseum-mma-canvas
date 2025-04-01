@@ -7,18 +7,19 @@ const Hero = () => {
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <video 
-        className="video-background"
+        className="absolute w-full h-full object-cover"
         autoPlay 
         loop 
         muted 
         playsInline
+        style={{ objectFit: 'cover' }}
       >
         <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       
       {/* Overlay */}
-      <div className="video-overlay"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-20 text-center">
@@ -33,7 +34,7 @@ const Hero = () => {
           No batch restrictions, no waiting—just walk in and train when you want.
         </p>
         <div className="flex flex-col md:flex-row justify-center gap-4 animate-fade-down" style={{ animationDelay: "0.6s" }}>
-          <button className="btn-primary">
+          <button className="bg-gym-red text-white font-bold py-3 px-6 rounded-md hover:bg-red-600 transition-colors">
             Join Now
           </button>
           <button className="bg-transparent text-white border-2 border-white font-bold py-3 px-6 rounded-md hover:bg-white hover:bg-opacity-10 transition-all">
