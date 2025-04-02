@@ -66,7 +66,7 @@ const Hero = () => {
 
         {/* Content Container */}
         <div className="container mx-auto px-4 relative z-20 w-full h-full flex flex-col justify-between">
-          
+         
           {/* Middle Section - Main Content */}
           <div className="flex-grow flex flex-col justify-center pt-8">
             <div className="mb-8">
@@ -77,7 +77,7 @@ const Hero = () => {
                 Chennai's First Anytime MMA & Strength Training Gym
               </p>
             </div>
-            
+           
             {/* Buttons with increased size and proper links */}
             <div className="flex gap-8 pb-8 text-left">
               <Link to="/contact">
@@ -97,7 +97,7 @@ const Hero = () => {
                   Contact Us
                 </button>
               </Link>
-              
+             
               <Link to="/services">
                 <button className="
                   bg-black
@@ -151,7 +151,7 @@ const Hero = () => {
             ">
               Welcome to Colosseum Strength
             </h2>
-            
+           
             <div className="
               text-lg md:text-xl
               leading-relaxed
@@ -162,11 +162,11 @@ const Hero = () => {
               <p>
                 The <span className="font-bold">only gym in Chennai</span> offering <span className="font-bold">24/7 MMA Training</span> with no batch restrictions.
               </p>
-              
+             
               <p>
                 A <span className="font-bold">combat sports facility</span> specializing in MMA, strength training, and functional fitness.
               </p>
-              
+             
               <p>
                 Designed for <span className="font-bold">fighters</span>, <span className="font-bold">athletes</span>, and those seeking <span className="font-bold">real self-defense skills</span>.
               </p>
@@ -183,7 +183,7 @@ const Hero = () => {
       <div className="bg-white py-20">
         <div className="container mx-auto px-4">
           <h3 className="text-center text-4xl font-bold mb-16 text-black uppercase tracking-wider">Why Choose Us?</h3>
-          
+         
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {advantages.map((advantage, index) => (
               <div
@@ -204,29 +204,21 @@ const Hero = () => {
                 <div className="text-5xl mb-5 text-center group-hover:text-white">{advantage.icon}</div>
                 <h3 className="text-xl font-bold mb-3 text-center uppercase tracking-wider">{advantage.title}</h3>
                 <p className="text-gray-600 text-center group-hover:text-gray-300">{advantage.description}</p>
-                
-                {/* Added "Learn More" link */}
-                <div className="mt-auto pt-4 text-center">
-                  <Link to="/services">
-                    <span className="inline-block mt-2 font-bold text-black group-hover:text-white underline">
-                      Learn More
-                    </span>
-                  </Link>
-                </div>
+                {/* Removed "Learn More" link */}
               </div>
             ))}
           </div>
-          
+         
           {/* Added CTA button */}
           <div className="text-center mt-16">
             <Link to="/services">
               <button className="
-                bg-black 
-                text-white 
-                font-bold 
+                bg-black
+                text-white
+                font-bold
                 py-4 px-10
-                rounded-full 
-                hover:bg-gray-800 
+                rounded-full
+                hover:bg-gray-800
                 transition-all
                 shadow-lg
                 hover:shadow-xl
