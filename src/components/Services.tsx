@@ -1,4 +1,3 @@
-
 import React from "react";
 
 // Service data
@@ -44,35 +43,43 @@ const services = [
 const advantages = [
   {
     icon: "🔥",
-    text: "Anytime MMA & Strength Training – Train at your convenience, no fixed schedules."
+    title: "Anytime MMA & Strength Training",
+    description: "Train at your convenience with no fixed schedules. Our gym is open anytime for your flexibility."
   },
   {
     icon: "🥋",
-    text: "Pro Fighter Coaching – Learn from experienced professionals."
+    title: "Pro Fighter Coaching",
+    description: "Learn from experienced professionals and master the techniques used by top MMA fighters."
   },
   {
     icon: "👊",
-    text: "Self-Defense & Combat Training – Essential skills for everyone, especially women."
+    title: "Self-Defense & Combat Training",
+    description: "Develop essential combat and self-defense skills, especially designed for personal safety and empowerment."
   },
   {
     icon: "💪",
-    text: "Strength Training & Functional Training Over Machines – Build real strength, agility, and endurance."
+    title: "Strength & Functional Training",
+    description: "Build real strength, agility, and endurance with functional workouts instead of relying on machines."
   },
   {
     icon: "👦",
-    text: "Kids Batch (6-16 Years) – Instilling discipline, confidence, and strength from a young age."
+    title: "Kids Batch (6-16 Years)",
+    description: "Instill discipline, confidence, and physical strength in children through structured martial arts training."
   },
   {
     icon: "⚡",
-    text: "Recovery & Rehab – Keep your body in peak condition."
+    title: "Recovery & Rehab",
+    description: "Enhance mobility, prevent injuries, and recover faster with expert rehab programs and strength-building techniques."
   },
   {
     icon: "🥗",
-    text: "Nutrition Plans – MMA-focused diets for peak performance."
+    title: "Custom Nutrition Plans",
+    description: "Optimize your performance with personalized nutrition plans tailored for MMA fighters, strength training, and fat loss."
   },
   {
     icon: "🧼",
-    text: "Hygiene & Cleanliness – A top priority for a safe training environment."
+    title: "Hygiene & Cleanliness",
+    description: "Train in a clean, sanitized environment with strict hygiene standards for your safety and comfort."
   }
 ];
 
@@ -96,7 +103,8 @@ const Services = () => {
             {advantages.map((advantage, index) => (
               <div key={index} className="bg-white p-5 rounded-lg shadow-sm border-t-2 border-black">
                 <div className="text-3xl mb-2">{advantage.icon}</div>
-                <p className="text-black">{advantage.text}</p>
+                <h3 className="text-lg font-bold text-black">{advantage.title}</h3>
+                <p className="text-black">{advantage.description}</p>
               </div>
             ))}
           </div>
