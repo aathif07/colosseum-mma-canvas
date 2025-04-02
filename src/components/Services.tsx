@@ -1,5 +1,4 @@
-
-import React from "react";
+  import React from "react";
 
 // Service data
 const services = [
@@ -94,7 +93,7 @@ const Services = () => {
           <h3 className="section-subtitle text-center">Why Choose Us?</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {advantages.map((advantage, index) => (
-              <div key={index} className="bg-white p-5 rounded-lg shadow-sm border-t-2 border-gym-red">
+              <div key={index} className="bg-white p-5 rounded-lg shadow-sm border-t-2 border-black">
                 <div className="text-3xl mb-2">{advantage.icon}</div>
                 <p className="text-gym-dark">{advantage.text}</p>
               </div>
@@ -105,10 +104,10 @@ const Services = () => {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="service-card">
+            <div key={index} className="bg-white p-6 rounded-lg shadow-md border-t-2 border-black hover:shadow-lg transition-all">
               <div className="text-4xl mb-3">{service.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-              <p>{service.description}</p>
+              <h3 className="text-xl font-bold mb-3 text-black">{service.title}</h3>
+              <p className="text-gray-700">{service.description}</p>
             </div>
           ))}
         </div>
@@ -116,7 +115,7 @@ const Services = () => {
         {/* CTA */}
         <div className="text-center mt-16">
           <p className="text-xl mb-6">Are you ready to train like a fighter? Join the movement today!</p>
-          <button className="btn-primary">
+          <button className="bg-black text-white font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition-all">
             Get Started
           </button>
         </div>
