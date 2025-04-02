@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 // Service data
 const services = [
@@ -41,38 +42,84 @@ const services = [
 ];
 
 const Services = () => {
+  // Animation variants for the service cards with slower timing
+  const cardVariants = {
+    offscreen: {
+      y: 80,
+      opacity: 0
+    },
+    onscreen: (i) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        bounce: 0.2, // Less bounce for a more controlled animation
+        duration: 1.2, // Longer duration for slower animation
+        delay: i * 0.3 // Much longer delay between cards (0.3s per card)
+      }
+    })
+  };
+
   return (
     <section className="py-20 bg-gym-light">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }} // Slower header animation
+        >
           <h2 className="section-title text-black">Our Services</h2>
           <p className="text-lg max-w-3xl mx-auto text-black">
             We are not your regular gym; we specialize in combat sports, strength training, and functional fitness.
             Whether you're an aspiring fighter, a fitness enthusiast, or someone looking to master self-defense,
             our facility is designed to push your limits.
           </p>
-        </div>
+        </motion.div>
        
-        {/* Services Grid */}
+        {/* Services Grid with slower, more pronounced sequential animations */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md border-t-2 border-black hover:shadow-lg transition-all">
+            <motion.div 
+              key={index} 
+              className="bg-white p-6 rounded-lg shadow-md border-t-2 border-black hover:shadow-lg transition-all"
+              custom={index} // Pass the index to use in the staggered delay
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ 
+                once: true, 
+                amount: 0.2, // Trigger when just 20% of the card is visible
+                margin: "50px 0px" // Start animation a bit earlier
+              }}
+              variants={cardVariants}
+            >
               <div className="text-4xl mb-3">{service.icon}</div>
               <h3 className="text-xl font-bold mb-3 text-black">{service.title}</h3>
               <p className="text-black">{service.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
        
-        {/* CTA */}
-        <div className="text-center mt-16">
+        {/* CTA with slower animation */}
+        <motion.div 
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }} // Slower CTA animation
+        >
           <p className="text-xl mb-6 text-black">Are you ready to train like a fighter? Join the movement today!</p>
           <Link to="/contact">
-            <button className="bg-black text-white font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition-all">
+            <motion.button 
+              className="bg-black text-white font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition-all"
+              whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+              whileTap={{ scale: 0.95 }}
+            >
               Get Started
-            </button>
+            </motion.button>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

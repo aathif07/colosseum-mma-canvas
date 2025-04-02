@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onServicesClick, onContact
             className="font-bold text-xl text-black" 
             onClick={() => handleNavClick(onHomeClick)}
           >
-            Colosseum  Strength & MMA
+           COLOSSEUM STRENGTH & MMA
           </Link>
 
           {/* Desktop Navigation */}
