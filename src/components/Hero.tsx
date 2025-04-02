@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   // Advantages data
@@ -46,6 +47,37 @@ const Hero = () => {
     }
   ];
 
+  // Animation variants for the advantage cards
+  const cardVariants = {
+    offscreen: {
+      y: 80,
+      opacity: 0
+    },
+    onscreen: (i) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        bounce: 0.2, // Less bounce for a more controlled animation
+        duration: 1.2, // Longer duration for slower animation
+        delay: i * 0.3 // Much longer delay between cards (0.3s per card)
+      }
+    })
+  };
+
+  // Animation variants for section headers
+  const headerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.8,
+        ease: "easeOut"
+      } 
+    }
+  };
+
   return (
     <div>
       {/* Hero Section */}
@@ -70,16 +102,31 @@ const Hero = () => {
           {/* Middle Section - Main Content */}
           <div className="flex-grow flex flex-col justify-center pt-8">
             <div className="mb-8">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-3">
+              <motion.h1 
+                className="text-4xl md:text-6xl font-bold text-white mb-3"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
                 Colosseum Strength & MMA
-              </h1>
-              <p className="text-white text-xl md:text-2xl">
+              </motion.h1>
+              <motion.p 
+                className="text-white text-xl md:text-2xl"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
                 Chennai's First Anytime MMA & Strength Training Gym
-              </p>
+              </motion.p>
             </div>
            
             {/* Buttons with increased size and proper links */}
-            <div className="flex gap-8 pb-8 text-left">
+            <motion.div 
+              className="flex gap-8 pb-8 text-left"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
               <Link to="/contact">
                 <button className="
                   bg-transparent
@@ -115,11 +162,16 @@ const Hero = () => {
                   More Info
                 </button>
               </Link>
-            </div>
+            </motion.div>
           </div>
 
           {/* Bottom Section - Who We Are */}
-          <div className="pb-8 text-right">
+          <motion.div 
+            className="pb-8 text-right"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
             <Link to="/contact">
               <button className="
                 bg-white text-black font-bold py-4 px-10 rounded-full
@@ -128,19 +180,26 @@ const Hero = () => {
                 Who We Are
               </button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
 
       {/* Welcome Message Section */}
       <div className="py-20 px-4 bg-white">
         <div className="container mx-auto max-w-5xl">
-          <div className="
-            bg-black
-            p-12
-            text-white
-            border-2 border-black
-          ">
+          <motion.div 
+            className="
+              bg-black
+              p-12
+              text-white
+              border-2 border-black
+              rounded-2xl
+            "
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={headerVariants}
+          >
             <h2 className="
               text-3xl md:text-4xl
               font-bold
@@ -173,25 +232,34 @@ const Hero = () => {
             </div>
 
             <div className="mt-12 flex justify-center">
-              <div className="w-32 h-1 bg-white"></div>
+              <div className="w-32 h-1 bg-white rounded-full"></div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
       {/* Enhanced Why Choose Us Section */}
       <div className="bg-white py-20">
         <div className="container mx-auto px-4">
-          <h3 className="text-center text-4xl font-bold mb-16 text-black uppercase tracking-wider">Why Choose Us?</h3>
+          <motion.h3 
+            className="text-center text-4xl font-bold mb-16 text-black uppercase tracking-wider"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={headerVariants}
+          >
+            Why Choose Us?
+          </motion.h3>
          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {advantages.map((advantage, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="
                   bg-white
                   p-8
                   border-2 border-black
+                  rounded-xl
                   flex flex-col
                   h-full
                   hover:bg-black hover:text-white
@@ -199,18 +267,34 @@ const Hero = () => {
                   duration-300
                   group
                   cursor-pointer
+                  shadow-sm
+                  hover:shadow-lg
                 "
+                custom={index}
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ 
+                  once: true, 
+                  amount: 0.2, // Trigger when just 20% of the card is visible
+                  margin: "50px 0px" // Start animation a bit earlier
+                }}
+                variants={cardVariants}
               >
                 <div className="text-5xl mb-5 text-center group-hover:text-white">{advantage.icon}</div>
                 <h3 className="text-xl font-bold mb-3 text-center uppercase tracking-wider">{advantage.title}</h3>
                 <p className="text-gray-600 text-center group-hover:text-gray-300">{advantage.description}</p>
-                {/* Removed "Learn More" link */}
-              </div>
+              </motion.div>
             ))}
           </div>
          
           {/* Added CTA button */}
-          <div className="text-center mt-16">
+          <motion.div 
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             <Link to="/services">
               <button className="
                 bg-black
@@ -227,7 +311,7 @@ const Hero = () => {
                 Explore All Services
               </button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
