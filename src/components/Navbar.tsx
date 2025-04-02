@@ -1,17 +1,9 @@
+
   import React, { useState, useEffect } from "react";
   import { Menu, X } from "lucide-react";
+  import { Link } from "react-router-dom";
 
-  interface NavbarProps {
-    onHomeClick: () => void;
-    onServicesClick: () => void;
-    onContactClick: () => void;
-  }
-
-  const Navbar: React.FC<NavbarProps> = ({ 
-    onHomeClick, 
-    onServicesClick, 
-    onContactClick 
-  }) => {
+  const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -34,8 +26,7 @@
       setIsMenuOpen(!isMenuOpen);
     };
 
-    const handleNavClick = (callback: () => void) => {
-      callback();
+    const handleNavClick = () => {
       setIsMenuOpen(false);
     };
 
@@ -46,31 +37,34 @@
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-              <span className={`font-bold text-xl ${isScrolled ? "text-gym-dark" : "text-white"}`}>
+              <Link to="/" className={`font-bold text-xl ${isScrolled ? "text-gym-dark" : "text-white"}`}>
                 Colosseum S&MMA
-              </span>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              <button 
-                onClick={() => handleNavClick(onHomeClick)}
+              <Link 
+                to="/"
                 className={`font-medium ${isScrolled ? "text-gym-dark hover:text-black" : "text-white hover:text-black"}`}
+                onClick={handleNavClick}
               >
                 Home
-              </button>
-              <button 
-                onClick={() => handleNavClick(onServicesClick)}
+              </Link>
+              <Link 
+                to="/services"
                 className={`font-medium ${isScrolled ? "text-gym-dark hover:text-black" : "text-white hover:text-black"}`}
+                onClick={handleNavClick}
               >
                 Services
-              </button>
-              <button 
-                onClick={() => handleNavClick(onContactClick)}
+              </Link>
+              <Link 
+                to="/contact"
                 className={`font-medium ${isScrolled ? "text-gym-dark hover:text-black" : "text-white hover:text-black"}`}
+                onClick={handleNavClick}
               >
                 Contact
-              </button>
+              </Link>
             </div>
 
             {/* Mobile Navigation Toggle */}
@@ -88,24 +82,27 @@
           {isMenuOpen && (
             <div className="md:hidden bg-white shadow-lg rounded-lg mt-2 py-4 px-4 absolute left-0 right-0 mx-4 animate-fade-down">
               <div className="flex flex-col space-y-4">
-                <button 
-                  onClick={() => handleNavClick(onHomeClick)}
+                <Link 
+                  to="/"
                   className="text-gym-dark hover:text-black font-medium text-left"
+                  onClick={handleNavClick}
                 >
                   Home
-                </button>
-                <button 
-                  onClick={() => handleNavClick(onServicesClick)}
+                </Link>
+                <Link 
+                  to="/services"
                   className="text-gym-dark hover:text-black font-medium text-left"
+                  onClick={handleNavClick}
                 >
                   Services
-                </button>
-                <button 
-                  onClick={() => handleNavClick(onContactClick)}
+                </Link>
+                <Link 
+                  to="/contact"
                   className="text-gym-dark hover:text-black font-medium text-left"
+                  onClick={handleNavClick}
                 >
                   Contact
-                </button>
+                </Link>
               </div>
             </div>
           )}

@@ -1,4 +1,5 @@
-  import React from "react";
+
+import React from "react";
 
 // Service data
 const services = [
@@ -80,8 +81,8 @@ const Services = () => {
     <section className="py-20 bg-gym-light">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="section-title">Our Services</h2>
-          <p className="text-lg max-w-3xl mx-auto">
+          <h2 className="section-title text-black">Our Services</h2>
+          <p className="text-lg max-w-3xl mx-auto text-black">
             We are not your regular gym; we specialize in combat sports, strength training, and functional fitness.
             Whether you're an aspiring fighter, a fitness enthusiast, or someone looking to master self-defense,
             our facility is designed to push your limits.
@@ -90,12 +91,12 @@ const Services = () => {
 
         {/* Why Choose Us */}
         <div className="mb-20">
-          <h3 className="section-subtitle text-center">Why Choose Us?</h3>
+          <h3 className="text-center text-3xl font-bold mb-8 text-gym-red">Why Choose Us?</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {advantages.map((advantage, index) => (
               <div key={index} className="bg-white p-5 rounded-lg shadow-sm border-t-2 border-black">
                 <div className="text-3xl mb-2">{advantage.icon}</div>
-                <p className="text-gym-dark">{advantage.text}</p>
+                <p className="text-black">{advantage.text}</p>
               </div>
             ))}
           </div>
@@ -107,14 +108,14 @@ const Services = () => {
             <div key={index} className="bg-white p-6 rounded-lg shadow-md border-t-2 border-black hover:shadow-lg transition-all">
               <div className="text-4xl mb-3">{service.icon}</div>
               <h3 className="text-xl font-bold mb-3 text-black">{service.title}</h3>
-              <p className="text-gray-700">{service.description}</p>
+              <p className="text-black">{service.description}</p>
             </div>
           ))}
         </div>
         
         {/* CTA */}
         <div className="text-center mt-16">
-          <p className="text-xl mb-6">Are you ready to train like a fighter? Join the movement today!</p>
+          <p className="text-xl mb-6 text-black">Are you ready to train like a fighter? Join the movement today!</p>
           <button className="bg-black text-white font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition-all">
             Get Started
           </button>

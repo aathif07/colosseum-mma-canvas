@@ -35,9 +35,9 @@
  
     --radius: 0.5rem;
     
-    --gym-red: 0, 100%, 50%;
-    --gym-dark: 0, 0%, 20%;
-    --gym-light: 0, 0%, 98%;
+    --gym-red: 0 100% 39.6%;
+    --gym-dark: 0 0% 6.7%;
+    --gym-light: 0 0% 96.1%;
   }
  
   .dark {
@@ -82,12 +82,6 @@
 }
 
 @layer components {
-  .scroll-section {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-  }
-  
   .btn-primary {
     @apply bg-[hsl(var(--gym-red))] text-white font-bold py-3 px-6 rounded-md hover:bg-opacity-90 transition-colors;
   }
@@ -110,13 +104,6 @@
 
   .animate-fade-down {
     animation: fadeDown 0.5s ease-out forwards;
-  }
-  
-  /* Mobile-specific styles */
-  @media (max-width: 767px) {
-    .scroll-section {
-      min-height: calc(100vh - 60px);
-    }
   }
 }
 

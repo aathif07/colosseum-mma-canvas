@@ -1,52 +1,81 @@
-import React from "react";
-import { ArrowDown } from "lucide-react";
 
-const Hero = () => {
+import React from "react";
+import { Link } from "react-router-dom";
+import { Instagram, MessageSquare, Phone, Mail, MapPin } from "lucide-react";
+
+const Footer = () => {
   return (
-    <div className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
-      <video 
-        className="video-background"
-        autoPlay 
-        loop 
-        muted 
-        playsInline
-      >
-        <source src="" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      
-      {/* Overlay */}
-      <div className="video-overlay"></div>
-      
-      {/* Content */}
-      <div className="container mx-auto px-4 relative z-20 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 animate-fade-down">
-          Colosseum Strength & MMA
-        </h1>
-        <h2 className="text-xl md:text-2xl text-white mb-8 animate-fade-down" style={{ animationDelay: "0.2s" }}>
-          Chennai's First Anytime MMA & Strength Training Gym
-        </h2>
-        <p className="text-white text-lg max-w-3xl mx-auto mb-10 animate-fade-down" style={{ animationDelay: "0.4s" }}>
-          Welcome to Colosseum Strength & MMA – the only gym in Chennai that offers Anytime MMA Training. 
-          No batch restrictions, no waiting—just walk in and train when you want.
-        </p>
-        <div className="flex flex-col md:flex-row justify-center gap-4 animate-fade-down" style={{ animationDelay: "0.6s" }}>
-          <button className="bg-black text-white font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition-all">
-            Join Now
-          </button>
-          <button className="bg-transparent text-white border-2 border-white font-bold py-3 px-6 rounded-md hover:bg-white hover:bg-opacity-10 transition-all">
-            Learn More
-          </button>
+    <footer className="bg-gym-dark text-white py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* About */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Colosseum Strength & MMA</h3>
+            <p className="mb-4">
+              Chennai's First Anytime MMA & Strength Training Gym. Train at your convenience with no batch restrictions.
+            </p>
+            <div className="flex space-x-4">
+              <a 
+                href="https://www.instagram.com/colosseum_strength_mma/" 
+                target="_blank" 
+                rel="noreferrer"
+                className="hover:text-gym-red transition-colors"
+              >
+                <Instagram size={20} />
+              </a>
+              <a 
+                href="http://www.wa.me/+917401070866" 
+                target="_blank" 
+                rel="noreferrer"
+                className="hover:text-gym-red transition-colors"
+              >
+                <MessageSquare size={20} />
+              </a>
+            </div>
+          </div>
+          
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="hover:text-gym-red transition-colors">Home</Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-gym-red transition-colors">Services</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-gym-red transition-colors">Contact Us</Link>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Contact */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Contact Info</h3>
+            <ul className="space-y-2">
+              <li className="flex items-center">
+                <Phone size={16} className="mr-2" />
+                <span>+91 74010 70866</span>
+              </li>
+              <li className="flex items-center">
+                <Mail size={16} className="mr-2" />
+                <span>colosseumgym2110@gmail.com</span>
+              </li>
+              <li className="flex items-start">
+                <MapPin size={16} className="mr-2 mt-1" />
+                <span>No.13 thiruporur road, Hasthinapuram, Chromepet, Chennai 600064</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+          <p>&copy; {new Date().getFullYear()} Colosseum Strength & MMA. All rights reserved.</p>
         </div>
       </div>
-      
-      {/* Scroll down indicator */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-20 animate-bounce">
-        <ArrowDown className="text-white" size={32} />
-      </div>
-    </div>
+    </footer>
   );
 };
 
-export default Hero;
+export default Footer;

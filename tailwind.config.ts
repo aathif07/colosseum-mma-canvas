@@ -64,9 +64,9 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				gym: {
-					red: '#cb0000',
-					dark: '#111111',
-					light: '#f5f5f5',
+					red: 'hsl(var(--gym-red))',
+					dark: 'hsl(var(--gym-dark))',
+					light: 'hsl(var(--gym-light))',
 				}
 			},
 			borderRadius: {
