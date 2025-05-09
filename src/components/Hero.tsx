@@ -1,52 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Hero = () => {
-  // Advantages data
-  const advantages = [
-    {
-      icon: "🔥",
-      title: "Anytime MMA & Strength Training",
-      description: "Train at your convenience with no fixed schedules. Our gym is open anytime for your flexibility."
-    },
-    {
-      icon: "🥋",
-      title: "Pro Fighter Coaching",
-      description: "Learn from experienced professionals and master the techniques used by top MMA fighters."
-    },
-    {
-      icon: "👊",
-      title: "Self-Defense & Combat Training",
-      description: "Develop essential combat and self-defense skills, especially designed for personal safety and empowerment."
-    },
-    {
-      icon: "💪",
-      title: "Strength & Functional Training",
-      description: "Build real strength, agility, and endurance with functional workouts instead of relying on machines."
-    },
-    {
-      icon: "👦",
-      title: "Kids Batch (6-16 Years)",
-      description: "Instill discipline, confidence, and physical strength in children through structured martial arts training."
-    },
-    {
-      icon: "⚡",
-      title: "Recovery & Rehab",
-      description: "Enhance mobility, prevent injuries, and recover faster with expert rehab programs and strength-building techniques."
-    },
-    {
-      icon: "🥗",
-      title: "Custom Nutrition Plans",
-      description: "Optimize your performance with personalized nutrition plans tailored for MMA fighters, strength training, and fat loss."
-    },
-    {
-      icon: "🧼",
-      title: "Hygiene & Cleanliness",
-      description: "Train in a clean, sanitized environment with strict hygiene standards for your safety and comfort."
-    }
-  ];
-
   return (
+<<<<<<< HEAD
     <div>
       {/* Hero Section */}
       <div className="relative h-screen flex items-center overflow-hidden">
@@ -116,31 +72,80 @@ const Hero = () => {
                 </button>
               </Link>
             </div>
+=======
+    <div className="relative h-screen flex items-center overflow-hidden">
+      {/* Video Background */}
+      <video 
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+      >
+        <source src="/video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+    
+      {/* Content Container */}
+      <div className="container mx-auto px-4 relative z-20 w-full h-full flex flex-col justify-between">
+        {/* Middle Section - Main Content */}
+        <div className="flex-grow flex flex-col justify-center pt-8">
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-3">
+              Colosseum Strength & MMA
+            </h1>
+            <p className="text-white text-xl md:text-2xl">
+              Chennai's First Anytime MMA & Strength Training Gym
+            </p>
+>>>>>>> parent of e7c33a2 (hero ,service ,contact and all update)
           </div>
-
-          {/* Bottom Section - Who We Are */}
-          <div className="pb-8 text-right">
-            <Link to="/contact">
-              <button className="
-                bg-white text-black font-bold py-4 px-10 rounded-full
-                hover:bg-gray-200 transition-all shadow-lg hover:shadow-xl text-xl
-              ">
-                Who We Are
-              </button>
-            </Link>
+          
+          {/* Buttons with proper spacing */}
+          <div className="pb-8 text-left "> {/* Increased gap from gap-4 to gap-8 */}
+            <button className="
+              bg-transparent 
+              text-white 
+              border-2 border-white 
+              font-bold 
+              py-3 px-8
+              rounded-full 
+              hover:bg-white hover:bg-opacity-20 
+              transition-all
+              shadow-lg
+              hover:shadow-xl
+              text-lg
+            ">
+              Contact us
+            </button>
+            
+            <button className="
+              bg-black 
+              text-white 
+              font-bold 
+              py-3 px-8
+              rounded-full 
+              hover:bg-gray-800 
+              transition-all
+              shadow-lg
+              hover:shadow-xl
+              text-lg
+              border-2 border-black
+            ">
+              More Info
+            </button>
           </div>
         </div>
-      </div>
-
-      {/* Welcome Message Section */}
-      <div className="py-20 px-4 bg-white">
-        <div className="container mx-auto max-w-5xl">
-          <div className="
-            bg-black
-            p-12
-            text-white
-            border-2 border-black
+        
+        {/* Bottom Section - Who We Are */}
+        <div className="pb-8 text-right">
+          <button className="
+            bg-white text-black font-bold py-3 px-6 rounded-full
+            hover:bg-gray-200 transition-all shadow-lg hover:shadow-xl text-lg
           ">
+<<<<<<< HEAD
             <h2 className="
               text-3xl md:text-4xl
               font-bold
@@ -228,6 +233,10 @@ const Hero = () => {
               </button>
             </Link>
           </div>
+=======
+            Who We Are
+          </button>
+>>>>>>> parent of e7c33a2 (hero ,service ,contact and all update)
         </div>
       </div>
     </div>
